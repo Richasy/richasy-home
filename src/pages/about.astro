@@ -1,0 +1,34 @@
+---
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import PageHead from '@/components/PageHead.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+import Layout from '@/layouts/Layout.astro'
+import { getAllProjects } from '@/lib/data-utils'
+
+const projects = await getAllProjects()
+---
+
+<Layout class="max-w-3xl">
+  <PageHead slot="head" title="关于" />
+  <Breadcrumbs items={[{ label: '关于', icon: 'lucide:info' }]} />
+
+  <section>
+    <div class="min-w-full">
+      <div class="prose mb-8">
+        <p class="mt-0">
+          我的主要技术栈还是 C# + XAML，以前做 UWP，现在做
+          WinUI，偶尔写点网页。我做出的所有应用（如下所示），
+          都是为了解决自己在生活和工作中遇到的问题，这也是初心。所以如果你让我做一些我生活中用不到的东西或功能，我就会觉得很没意思（给钱也不行）。
+        </p>
+        <p>
+          现在在微软中国讨生活混饭吃，Anyway，写代码既是工作也是爱好，先这样混着吧。
+        </p>
+      </div>
+
+      <h2 class="mb-4 text-2xl font-medium">我发布的项目</h2>
+      <div class="flex flex-col gap-4">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
+</Layout>

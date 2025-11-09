@@ -1,0 +1,80 @@
+---
+import BlogCard from '@/components/BlogCard.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { getRecentPosts } from '@/lib/data-utils'
+
+const blog = await getRecentPosts(SITE.featuredPostCount)
+---
+
+<Layout class="max-w-3xl">
+  <PageHead slot="head" title="首页" />
+  <section class="rounded-lg border">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="text-3xl leading-none font-medium">云之幻</h3>
+      <p class="text-muted-foreground text-sm">
+        Richasy &bull; <span class="font-medium">Windows 桌面开发</span>
+      </p>
+    </div>
+    <div class="p-6 pt-0">
+      <p class="text-muted-foreground mb-2 text-sm">
+        我主要关注 Windows 平台的桌面应用开发（使用 Windows App
+        SDK），分享一些开发经验和技术文章。 目前的主力开发项目包括：<Link
+          href="https://apps.microsoft.com/detail/9nb0h051m4v4"
+          class="text-foreground"
+          external
+          underline>小幻影视</Link
+        >，<Link
+          href="https://apps.microsoft.com/detail/9PFZCKRHW0BC"
+          class="text-foreground"
+          external
+          underline>小幻阅读</Link
+        >，<Link
+          href="https://apps.microsoft.com/detail/9nb0nb3mlqtm"
+          class="text-foreground"
+          external
+          underline>小幻助理</Link
+        >&nbsp;以及&nbsp;<Link
+          href="https://github.com/Richasy/Bili.Copilot"
+          class="text-foreground"
+          external
+          underline>哔哩助理</Link
+        >&nbsp;等。
+      </p>
+      <p class="text-muted-foreground text-sm">
+        你可以访问我的 <Link
+          href="https://github.com/Richasy"
+          class="text-foreground"
+          underline
+          external>GitHub</Link
+        > 来查看更多我创建的项目。
+      </p>
+    </div>
+  </section>
+  <section class="flex flex-col gap-y-4">
+    <h2 class="text-2xl font-medium">Latest posts</h2>
+    <ul class="flex flex-col gap-y-4">
+      {
+        blog.map((post) => (
+          <li>
+            <BlogCard entry={post} />
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex justify-center">
+      <Link
+        href="/blog"
+        class={buttonVariants({ variant: 'ghost' }) + ' group'}
+      >
+        See all posts <span
+          class="ml-1.5 transition-transform group-hover:translate-x-1"
+          >&rarr;</span
+        >
+      </Link>
+    </div>
+  </section>
+</Layout>
