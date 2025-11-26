@@ -45,5 +45,24 @@ import Favicons from './Favicons.astro'
   <Favicons />
   <ClientRouter />
 
+  <script>
+    import { ApplicationInsights } from '@microsoft/applicationinsights-web'
+
+    const connectionString = import.meta.env.PUBLIC_APPINSIGHTS_CONNECTION_STRING
+
+    if (connectionString) {
+      const appInsights = new ApplicationInsights({
+        config: {
+          connectionString,
+        },
+      })
+      appInsights.loadAppInsights()
+
+      document.addEventListener('astro:page-load', () => {
+        appInsights.trackPageView()
+      })
+    }
+  </script>
+
   <slot />
 </head>

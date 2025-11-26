@@ -137,6 +137,7 @@ endDate: '2024-12-31'
 - **文档内容**：采用 [CC BY-ND 4.0](LICENSE-CONTENT) 协议（署名-禁止演绎）
 
 具体说明：
+
 - 所有源代码（包括但不限于 TypeScript、Astro、CSS 文件）采用 MIT 协议
 - 所有文档内容（包括但不限于 `src/content/blog/`、`src/content/authors/`、`src/content/projects/` 目录下的 Markdown/MDX 文件及其中的文字、图片）采用 CC BY-ND 4.0 协议
 
