@@ -41,8 +41,8 @@ jobs:
 
       - name: Deploy to Remote Server
         run: |
-          # 使用 rsync 通过 SSH 同步文件
-          rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/www/home/
+          # 使用 rsync 通过 SSH 同步文件，添加 --no-o --no-g 避免权限错误
+          rsync -avz --no-o --no-g --delete -e "ssh -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/www/home/
           
       - name: Post-Deploy Check
         run: |
