@@ -13,7 +13,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: self-hosted
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -44,7 +44,7 @@ jobs:
           # 使用 rsync 通过 SSH 同步文件
           # --rsync-path="sudo rsync": 在远程服务器上使用 sudo 运行 rsync，需要远程服务器配置免密 sudo
           rsync -avz --delete --rsync-path="sudo rsync" -e "ssh -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/www/home/
-          
+
       - name: Post-Deploy Check
         run: |
           echo "Deployment completed successfully."
