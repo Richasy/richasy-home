@@ -42,9 +42,8 @@ jobs:
       - name: Deploy to Remote Server
         run: |
           # 使用 rsync 通过 SSH 同步文件
-          # --no-o --no-g: 不保留所有者和组
-          # --no-t: 不保留时间戳 (避免 failed to set times 错误)
-          rsync -avz --no-o --no-g --no-t --delete -e "ssh -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/www/home/
+          # --rsync-path="sudo rsync": 在远程服务器上使用 sudo 运行 rsync，需要远程服务器配置免密 sudo
+          rsync -avz --delete --rsync-path="sudo rsync" -e "ssh -i ~/.ssh/id_rsa" dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/www/home/
           
       - name: Post-Deploy Check
         run: |
