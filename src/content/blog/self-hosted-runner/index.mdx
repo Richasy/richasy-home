@@ -29,7 +29,7 @@ authors: ['Richasy']
 
 ## 从 BOT 开始
 
-这个收红包的机器人原理很简单，它通过 SMTP/IMTP 和我的 Gmail 连接，然后定时检查当天的未读邮件。
+这个收红包的机器人原理很简单，它通过 SMTP/IMAP 和我的 Gmail 连接，然后定时检查当天的未读邮件。
 
 拿到邮件内容后丢给 AI，让 AI 来分辨内容，并从邮件标题或正文中提取出口令红包码，然后通过 telegram 发给我。
 
@@ -127,13 +127,13 @@ TMD 降级之后就好了。
 
 > 反正你也是24小时开机，平时让你闲着实在是浪费，这回可要好好榨干你了，嘿嘿嘿……
 
-我一口气创建了 4 个 Windows 11 Hyper-V 虚拟机，每个虚拟机分配 8核 4G 256G，安装如下必备软件和依赖：
+我一口气创建了 4 个 Windows 11 Hyper-V 虚拟机，每个虚拟机分配 4G 256G，安装如下必备软件和依赖：
 
 - PowerShell 7
 - Git
 - Github.cli
 - 7zip
-- Visual Studio 2022（包含桌面开发和 UWP 工作负载）
+- Visual Studio 2022（包含桌面开发和 WinUI 工作负载）
 
 然后按照 Github 官方文档的指引，下载 Runner，配置 Runner。
 
